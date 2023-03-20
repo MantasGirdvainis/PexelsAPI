@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useRef, useCallback, useEffect } from "react";
+import { PictureCard } from "./components/PictureCard/PictureCard";
+import { useFetch } from "./hooks/useFetch";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [page, setPage] = useState(1);
+  const { loading, error, list } = useFetch(page);
+  const loader = useRef(null);
+
+  const handleObserver = useCallback((entries: any) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, []);
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 0
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, [handleObserver]);
 
   return (
-    <div className="App">
+    <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {list.map((item, i) => (
+          <PictureCard key={i} url={item.src.medium} photographer={item.photographer} />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+      {loading && <p>Loading...</p>}
+      {error && <p>Error!</p>}
+      <div ref={loader} />
+    </>
 
-export default App
+  )
+};
+
+export default App;
