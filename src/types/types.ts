@@ -5,6 +5,7 @@ export interface PexelsPictures {
 }
 
 export interface PexelsPicture {
+    id: number;
     url: string;
     photographer: string;
     src: {

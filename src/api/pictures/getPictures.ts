@@ -3,7 +3,7 @@ import { PexelsPictures } from '../../types/types';
 
 const getPictures = async (page: number): Promise<PexelsPictures> => {
 
-    const response = await fetch(`https://api.pexels.com/v1/curated?page=${page}&per_page=80`, {
+    const response = await fetch(`https://api.pexels.com/v1/curated?page=${page}&per_page=10`, {
         headers: {
             Authorization: API_KEY
         }

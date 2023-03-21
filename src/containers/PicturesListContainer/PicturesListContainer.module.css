@@ -1,0 +1,36 @@
+.picturesListContainer {
+   margin: 50px auto;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 20px;
+  } 
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.error {
+  color: rgb(255, 0, 0);
+  font-size: 700;
+}
+
+  @media (max-width: 480px) { .picturesListContainer {
+   grid-template-columns: 1fr;
+   width: 250px;
+
+ }}
+
+ @media (min-width: 481px) { .picturesListContainer {
+   grid-template-columns: repeat(2, 1fr);
+   width: 520px;
+
+ }}
+
+ @media (min-width: 769px) { .picturesListContainer {
+   grid-template-columns: repeat(3, 1fr);
+   width: 800px;
+
+ }}
+
