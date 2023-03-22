@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Button/Button";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 
 import styles from "./PictureCard.module.css";
 
@@ -9,36 +11,29 @@ type PictureCardProps = {
     id: number;
 };
 
-const PictureCard = ({ photographer, url, id }: PictureCardProps): JSX.Element => {
+export const PictureCard = ({ photographer, url, id }: PictureCardProps): JSX.Element => {
     const [showOverlay, setShowOverlay] = useState<boolean>(false);
-    const [favouriteStatus, setFavouriteStatus] = useState<string | boolean>(localStorage.getItem(id.toString()) || false);
+
+    const pictureName = id;
+    const pictureValue = id;
+
+    const { itemStatus, saveItem, removeItem } = useLocalStorage(pictureName, pictureValue);
 
     const onMouseAction = (show: boolean) => () => {
         setShowOverlay(show);
     };
 
-    const handleFavourite = () => {
-        if (!favouriteStatus) {
-            setFavouriteStatus((prev) => !prev);
-            localStorage.setItem(id.toString(), id.toString());
-        } else {
-            setFavouriteStatus((prev) => !prev);
-            localStorage.removeItem(id.toString());
-        }
-    };
-
     return (
         <div className={styles.container} onMouseEnter={onMouseAction(true)} onMouseLeave={onMouseAction(false)}>
             <img alt={`${photographer}-picture`} className={styles.image} loading='lazy' src={url} />
-            <div className={showOverlay ? styles.mouseOn : styles.mouseOff}>
+            <div className={showOverlay ? styles.actionLayer : [styles.actionLayer, styles.actionLayerHidden, ].join(' ')}>
                 <p>{photographer}</p>
                 <hr className={styles.line} />
-                <Button className={styles.button} onClick={handleFavourite}>
-                    {favouriteStatus ? 'Unfavourite' : 'Favourite'}
+                <Button className={styles.button} onClick={itemStatus ? removeItem : saveItem }>
+                    {itemStatus ? 'Unfavourite' : 'Favourite'}
                 </Button>
             </div>
         </div>
     );
 };
 
-export { PictureCard };
