@@ -1,6 +1,6 @@
 import styles from "./Loader.module.css";
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div className={styles.ldsroller}>
       <div></div>
@@ -14,5 +14,3 @@ const Loader = () => {
     </div>
   );
 };
-
-export { Loader };

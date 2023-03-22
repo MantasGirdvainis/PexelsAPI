@@ -5,7 +5,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 import styles from './PicturesListContainer.module.css';
 
-const PicturesListContainer = () => {
+export const PicturesListContainer = (): JSX.Element => {
 
   const [page, setPage] = useState<number>(1);
   const { loading, error, list } = useFetch(page);
@@ -21,7 +21,7 @@ const PicturesListContainer = () => {
   useEffect(() => {
     const option = {
       root: null,
-      rootMargin: "20px",
+      rootMargin: "0px 0px 100px 0px",
       threshold: 0
     };
     const observer = new IntersectionObserver(handleObserver, option);
@@ -32,18 +32,14 @@ const PicturesListContainer = () => {
     <>
       <div className={styles.picturesListContainer}>
         {list.map((item, i) => (
-          <PictureCard key={i} url={item.src.medium} photographer={item.photographer} id={item.id} />
+          <PictureCard key={i} url={item.src.large} photographer={item.photographer} id={item.id} />
         ))}
       </div>
+      <div ref={loader} />
       <div className={styles.status}>
         {loading && <Loader />}
         {error && <p className={styles.error}>Error!</p>}
       </div>
-      <div ref={loader} />
     </>
-
   )
-
 };
-
-export { PicturesListContainer };

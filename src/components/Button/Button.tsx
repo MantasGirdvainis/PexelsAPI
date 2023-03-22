@@ -1,4 +1,3 @@
-import styles from './Button.module.css';
 
 type ButtonProps = {
     children: JSX.Element | string;
@@ -7,7 +6,7 @@ type ButtonProps = {
     onClick?: () => void;
 };
 
-const Button = ({ children, className, type = 'button', onClick }: ButtonProps): JSX.Element => {
+export const Button = ({ children, className, type = 'button', onClick }: ButtonProps): JSX.Element => {
 
     return (
         <button className={className} type={type} onClick={onClick}>
@@ -15,5 +14,3 @@ const Button = ({ children, className, type = 'button', onClick }: ButtonProps):
         </button>
     )
 };
-
-export { Button };
