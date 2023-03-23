@@ -10,6 +10,7 @@
   box-shadow: 2px 2px var(--grey);
   z-index: 0;
   object-fit: cover;
+  background-color: rgb(230, 230, 230);
 }
 .actionLayerHidden {
   opacity: 0;
