@@ -1,7 +1,7 @@
 import { API_KEY } from '../shared/constants';
 import { PexelsPictures } from '../../types/types';
 
-const PER_PAGE_COUNT = 10
+const PER_PAGE_COUNT = 10;
 
 export const getPictures = async (page: number): Promise<PexelsPictures> => {
 

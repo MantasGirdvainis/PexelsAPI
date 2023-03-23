@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button } from "../Button/Button";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-
 import styles from "./PictureCard.module.css";
 
 type PictureCardProps = {
@@ -14,10 +13,10 @@ type PictureCardProps = {
 export const PictureCard = ({ photographer, url, id }: PictureCardProps): JSX.Element => {
     const [showOverlay, setShowOverlay] = useState<boolean>(false);
 
-    const pictureName = id;
-    const pictureValue = id;
+    const pictureId = id;
+    const pictureValue = photographer;
 
-    const { itemStatus, saveItem, removeItem } = useLocalStorage(pictureName, pictureValue);
+    const { itemStatus, saveItem, removeItem } = useLocalStorage(pictureId, pictureValue);
 
     const onMouseAction = (show: boolean) => () => {
         setShowOverlay(show);

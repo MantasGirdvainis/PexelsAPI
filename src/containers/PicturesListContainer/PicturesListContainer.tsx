@@ -1,7 +1,9 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { PictureCard } from "../../components/PictureCard/PictureCard";
 import { useFetch } from "../../hooks/useFetch";
+import { UseHandleObserver } from "../../hooks/useHandleObserver";
+
 
 import styles from './PicturesListContainer.module.css';
 
@@ -9,24 +11,7 @@ export const PicturesListContainer = (): JSX.Element => {
 
   const [page, setPage] = useState<number>(1);
   const { loading, error, list } = useFetch(page);
-  const loader = useRef(null);
-
-  const handleObserver = useCallback((entries: any) => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  }, []);
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: "0px 0px 100px 0px",
-      threshold: 0
-    };
-    const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
-  }, [handleObserver]);
+  const { loader } = UseHandleObserver(setPage);
 
   return (
     <>

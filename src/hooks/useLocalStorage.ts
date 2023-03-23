@@ -4,7 +4,7 @@ export const useLocalStorage = (key: number | string, value: number | string) =>
 
     const itemStatusInLocalStorage = localStorage.getItem(value.toString()) ? true : false;
 
-    const [itemStatus, setItemStatus] = useState(itemStatusInLocalStorage);
+    const [itemStatus, setItemStatus] = useState<boolean>(itemStatusInLocalStorage);
 
     const saveItem = () => {
         setItemStatus((prev) => !prev);
