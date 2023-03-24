@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export const useLocalStorage = (key: number | string, value: number | string) => {
 
-    const itemStatusInLocalStorage = localStorage.getItem(value.toString()) ? true : false;
+    const itemStatusInLocalStorage = localStorage.getItem(key.toString()) ? true : false;
 
     const [itemStatus, setItemStatus] = useState<boolean>(itemStatusInLocalStorage);
 
@@ -17,5 +17,4 @@ export const useLocalStorage = (key: number | string, value: number | string) =>
     };
 
     return { itemStatus, saveItem, removeItem };
-
 };

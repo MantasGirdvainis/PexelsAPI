@@ -4,7 +4,6 @@ import { PictureCard } from "../../components/PictureCard/PictureCard";
 import { useFetch } from "../../hooks/useFetch";
 import { UseHandleObserver } from "../../hooks/useHandleObserver";
 
-
 import styles from './PicturesListContainer.module.css';
 
 export const PicturesListContainer = (): JSX.Element => {
