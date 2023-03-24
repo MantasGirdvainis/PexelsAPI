@@ -8,6 +8,6 @@ This project is using Pexels API. Created by Mantas Girdvainis.
 Before run the project you need to install all the dependencies. To do so run `npm install`
 Create .env file in the root directory and provide Pexels API KEY. Inside the file start with `VITE_API_KEY=` and provide your own Pexels API KEY.
 After that run below command `run npm dev` in the project directory.
-Open [http://127.0.0.1:5174/] to view it in the browser.
+Open ` Local url ` which is showed in terminal to view project in the browser.
 
 
