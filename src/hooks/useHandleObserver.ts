@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef } from "react";
 
-export const UseHandleObserver = (setPage: any) => {
+export const useHandleObserver = (
+  setPage: React.Dispatch<React.SetStateAction<number>>
+) => {
+  const ref = useRef(null);
 
-  const loader = useRef(null);
-
-  const handleObserver = useCallback((entries: any) => {
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
     if (target.isIntersecting) {
       setPage((prevPage: number) => prevPage + 1);
@@ -12,18 +13,16 @@ export const UseHandleObserver = (setPage: any) => {
   }, []);
 
   useEffect(() => {
-
     const option = {
       root: null,
       rootMargin: "0px 0px 300px 0px",
-      threshold: 0
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver(handleObserver, option);
 
-
-    if (loader.current) observer.observe(loader.current);
+    if (ref.current) observer.observe(ref.current);
   }, [handleObserver]);
 
-  return { loader };
+  return { ref };
 };
