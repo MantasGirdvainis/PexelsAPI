@@ -25,7 +25,7 @@ export const PictureCard = ({ photographer, url, id }: PictureCardProps): JSX.El
     return (
         <div className={styles.container} onMouseEnter={onMouseAction(true)} onMouseLeave={onMouseAction(false)}>
             <img alt={`${photographer}-picture`} className={styles.image} loading='lazy' src={url} />
-            <div className={showOverlay ? styles.actionLayer : [styles.actionLayer, styles.actionLayerHidden, ].join(' ')}>
+            <div className={showOverlay ? styles.actionLayer : [styles.actionLayer, styles.actionLayerHidden].join(' ')}>
                 <p>{photographer}</p>
                 <hr className={styles.line} />
                 <Button className={styles.button} onClick={itemStatus ? removeItem : saveItem }>

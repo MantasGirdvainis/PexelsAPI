@@ -3,9 +3,7 @@ import { PicturesListContainer } from "./containers/PicturesListContainer/Pictur
 function App() {
 
   return (
-    <>
       <PicturesListContainer />
-    </>
   )
 };
 

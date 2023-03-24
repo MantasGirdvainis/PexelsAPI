@@ -26,4 +26,4 @@ export const UseHandleObserver = (setPage: any) => {
   }, [handleObserver]);
 
   return { loader };
-}
+};
