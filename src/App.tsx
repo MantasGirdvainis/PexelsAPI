@@ -1,10 +1,7 @@
 import { PicturesListContainer } from "./containers/PicturesListContainer/PicturesListContainer";
 
 function App() {
-
-  return (
-      <PicturesListContainer />
-  )
-};
+  return <PicturesListContainer />;
+}
 
 export default App;

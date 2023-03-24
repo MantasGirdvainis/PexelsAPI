@@ -1,20 +1,26 @@
 import { useState } from "react";
 
-export const useLocalStorage = (key: number | string, value: number | string) => {
+export const useLocalStorage = (
+  key: number | string,
+  value: number | string
+) => {
+  const itemStatusInLocalStorage = localStorage.getItem(key.toString())
+    ? true
+    : false;
 
-    const itemStatusInLocalStorage = localStorage.getItem(key.toString()) ? true : false;
+  const [itemStatus, setItemStatus] = useState<boolean>(
+    itemStatusInLocalStorage
+  );
 
-    const [itemStatus, setItemStatus] = useState<boolean>(itemStatusInLocalStorage);
+  const saveItem = () => {
+    setItemStatus((prev) => !prev);
+    localStorage.setItem(key.toString(), value.toString());
+  };
 
-    const saveItem = () => {
-        setItemStatus((prev) => !prev);
-        localStorage.setItem(key.toString(), value.toString());
-    };
+  const removeItem = () => {
+    setItemStatus((prev) => !prev);
+    localStorage.removeItem(key.toString());
+  };
 
-    const removeItem = () => {
-        setItemStatus((prev) => !prev);
-        localStorage.removeItem(key.toString());
-    };
-
-    return { itemStatus, saveItem, removeItem };
+  return { itemStatus, saveItem, removeItem };
 };
